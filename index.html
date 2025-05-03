@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DarK Host - Hospedagem SA-MP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+    }
+
+    header {
+      background-color: #1f0036;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2rem;
+      color: #b84dff;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #b84dff;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(145deg, #1a0033, #2e0066);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      color: #b84dff;
+    }
+
+    .hero p {
+      color: #ccc;
+      font-size: 1.2rem;
+    }
+
+    .planos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 20px;
+    }
+
+    .plano {
+      background-color: #1a1a1a;
+      border: 2px solid #b84dff;
+      border-radius: 10px;
+      padding: 20px;
+      width: 280px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .plano:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #b84dff;
+    }
+
+    .preco {
+      font-size: 1.5rem;
+      color: #ff3ff1;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #1f0036;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .discord-button {
+      margin-top: 20px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #7289da;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .discord-button:hover {
+      background-color: #5b6eae;
+    }
+
+    @media (max-width: 768px) {
+      .planos {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">DAR HOST</div>
+    <nav>
+      <a href="#planos">Planos</a>
+      <a href="#revendas">Revendas</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Hospedagem Premium SA-MP</h1>
+    <p>Alta performance, proteção e preço justo.</p>
+    <a href="https://discord.gg/teste" target="_blank" class="discord-button">Entre no nosso Discord</a>
+  </section>
+
+  <section id="planos">
+    <h2 style="text-align:center; color: #b84dff;">Planos Mensais</h2>
+    <div class="planos">
+      <div class="plano">
+        <h3>Plano Basic</h3>
+        <div class="preco">R$ 5,99/mês</div>
+        <ul>
+          <li>✔ 50 slots</li>
+          <li>✔ Anti-DDoS</li>
+          <li>✔ MySQL Grátis</li>
+          <li>✔ TCAdmin</li>
+        </ul>
+      </div>
+      <div class="plano">
+        <h3>Plano Intermediário</h3>
+        <div class="preco">R$ 9,99/mês</div>
+        <ul>
+          <li>✔ 150 slots</li>
+          <li>✔ Proteção total</li>
+          <li>✔ Plugins .so</li>
+          <li>✔ IP dedicado</li>
+        </ul>
+      </div>
+      <div class="plano">
+        <h3>Plano Profissional</h3>
+        <div class="preco">R$ 19,99/mês</div>
+        <ul>
+          <li>✔ 500 slots</li>
+          <li>✔ IP personalizado</li>
+          <li>✔ FTP e WebFTP</li>
+          <li>✔ Ping BR</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="revendas" class="hero" style="padding: 60px 20px;">
+    <h2>Seja um Revendedor</h2>
+    <p>Ganhe dinheiro revendendo nossos planos. Painel white-label, suporte dedicado e ótimas margens.</p>
+    <a href="https://discord.gg/teste" target="_blank" class="discord-button">Contato via Discord</a>
+  </section>
+
+  <footer id="contato">
+    <p><strong>Dar Host</strong> &copy; 2025 - Todos os direitos reservados.</p>
+    <p>Monitoramento por IP via webhook está ativado.</p>
+  </footer>
+
+  <script>
+    // Envio de IP e localização para webhook (apenas para fins de exemplo)
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        fetch('https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username: 'Visitor Logger',
+            embeds: [
+              {
+                title: 'Novo visitante no site',
+                fields: [
+                  { name: 'IP', value: data.ip },
+                  { name: 'Cidade', value: data.city },
+                  { name: 'Região', value: data.region },
+                  { name: 'País', value: data.country_name },
+                  { name: 'Latitude', value: String(data.latitude) },
+                  { name: 'Longitude', value: String(data.longitude) }
+                ],
+                color: 1146986
+              }
+            ]
+          })
+        });
+      });
+  </script>
+</body>
+</html>
